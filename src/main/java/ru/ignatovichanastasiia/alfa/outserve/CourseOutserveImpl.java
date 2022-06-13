@@ -1,6 +1,7 @@
 
 package ru.ignatovichanastasiia.alfa.outserve;
 
+import org.springframework.stereotype.Service;
 import ru.ignatovichanastasiia.alfa.outserve.infc.CourseOutserve;
 
 /**
@@ -8,6 +9,7 @@ import ru.ignatovichanastasiia.alfa.outserve.infc.CourseOutserve;
  * @author ignatovichanastasiia
  */
 
+@Service
 public class CourseOutserveImpl implements CourseOutserve{
 
     //throws NullPointer

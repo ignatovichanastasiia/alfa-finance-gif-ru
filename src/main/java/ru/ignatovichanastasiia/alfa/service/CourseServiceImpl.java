@@ -2,7 +2,9 @@
 package ru.ignatovichanastasiia.alfa.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.ignatovichanastasiia.alfa.controller.CourseController;
+import ru.ignatovichanastasiia.alfa.domein.Gif;
 import ru.ignatovichanastasiia.alfa.outserve.CourseOutserveImpl;
 import ru.ignatovichanastasiia.alfa.outserve.GifOutserveImpl;
 import ru.ignatovichanastasiia.alfa.service.infc.CourseService;
@@ -11,6 +13,7 @@ import ru.ignatovichanastasiia.alfa.service.infc.CourseService;
  *
  * @author ignatovichanastasiia
  */
+@Service
 public class CourseServiceImpl implements CourseService{
 
     @Autowired
@@ -22,7 +25,7 @@ public class CourseServiceImpl implements CourseService{
 
     //получаем string с адресом гифки
     @Override
-    public String getInformation(String id){
+    public Gif getInformation(String id){
         Double courseToThisDay = getCourseToThisDay(id);
         Double courseToYesterday = getCourseToYesterday(id);
         Boolean vector = false;
@@ -43,7 +46,7 @@ public class CourseServiceImpl implements CourseService{
     }
     
     //метод, посылающий запрос на out гифок
-    private String getGif(Boolean vector){
+    private Gif getGif(Boolean vector){
         return gifout.getGif(vector);
     }
 

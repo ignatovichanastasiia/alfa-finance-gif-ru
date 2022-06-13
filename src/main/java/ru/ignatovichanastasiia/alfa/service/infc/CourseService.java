@@ -1,12 +1,14 @@
 
 package ru.ignatovichanastasiia.alfa.service.infc;
 
+import ru.ignatovichanastasiia.alfa.domein.Gif;
+
 /**
  *
  * @author ignatovichanastasiia
  */
 public interface CourseService {
     
-    String getInformation(String id);
+    Gif getInformation(String id);
     
 }
