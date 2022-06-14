@@ -1,6 +1,8 @@
 
 package ru.ignatovichanastasiia.alfa.domein;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  *
  * @author ignatovichanastasiia

@@ -35,17 +35,14 @@ public class CourseServiceImpl implements CourseService{
         return getGif(vector);
     }
     
-    //метод, посылающий запрос на out курсов (получаем курс на —≈√ќƒЌя)
     private Double getCourseToThisDay(String id){
         return courseout.getCourseToThisDay(id);
     }
     
-    //метод, посылающий запрос на out курсов (получаем курс за ¬„≈–ј)
     private Double getCourseToYesterday(String id){
         return courseout.getCourseToYesterday(id);
     }
     
-    //метод, посылающий запрос на out гифок
     private Gif getGif(Boolean vector){
         return gifout.getGif(vector);
     }
