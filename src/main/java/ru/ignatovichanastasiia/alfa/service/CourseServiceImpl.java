@@ -5,8 +5,6 @@ import java.net.URL;
 import javax.swing.text.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.ignatovichanastasiia.alfa.controller.CourseController;
-import ru.ignatovichanastasiia.alfa.domein.Gif;
 import ru.ignatovichanastasiia.alfa.outserve.CourseOutserveImpl;
 import ru.ignatovichanastasiia.alfa.outserve.GifOutserveImpl;
 import ru.ignatovichanastasiia.alfa.service.infc.CourseService;
