@@ -9,6 +9,6 @@ import ru.ignatovichanastasiia.alfa.domein.Gif;
  */
 public interface GifOutserve {
     
-    Gif getGif(Boolean vector);
+    Gif getUpOrDownGif(Boolean vector);
     
 }

@@ -27,9 +27,8 @@ public class CourseOutserveImpl implements CourseOutserve{
         return null;
     }
     
-        //должен отдать НЕ СТРИНГ!!
     private String getYesterdayDate(){
-    //метод, отдающий дату по апи (ВЧЕРАШНЮЮ)
+        //TODO
         return null;
     }
     

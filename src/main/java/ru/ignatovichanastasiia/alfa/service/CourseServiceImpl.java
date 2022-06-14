@@ -23,16 +23,15 @@ public class CourseServiceImpl implements CourseService{
     @Autowired
     private GifOutserveImpl gifout;
 
-    //получаем string с адресом гифки
     @Override
-    public Gif getInformation(String id){
+    public Gif getGif(String id){
         Double courseToThisDay = getCourseToThisDay(id);
         Double courseToYesterday = getCourseToYesterday(id);
         Boolean vector = false;
         if(courseToThisDay>=courseToYesterday){
             vector = true;
         }
-        return getGif(vector);
+        return gifout.getUpOrDownGif(vector);
     }
     
     private Double getCourseToThisDay(String id){
@@ -41,10 +40,6 @@ public class CourseServiceImpl implements CourseService{
     
     private Double getCourseToYesterday(String id){
         return courseout.getCourseToYesterday(id);
-    }
-    
-    private Gif getGif(Boolean vector){
-        return gifout.getGif(vector);
     }
 
 }

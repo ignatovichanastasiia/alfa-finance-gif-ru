@@ -21,8 +21,8 @@ public class CourseController {
     private CourseServiceImpl service;
     
     @GetMapping("/{id}")
-    public Gif getInformation(@PathVariable String id){ 
-        Gif gif = service.getInformation(id);
+    public Gif getGif(@PathVariable String id){ 
+        Gif gif = service.getGif(id);
         if(gif!=null){
             return gif;
         }else{

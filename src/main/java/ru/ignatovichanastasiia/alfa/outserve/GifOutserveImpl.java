@@ -14,12 +14,10 @@ import ru.ignatovichanastasiia.alfa.outserve.infc.GifOutserve;
 public class GifOutserveImpl implements GifOutserve{
 //true = up or not changed
 //false = down
-    //throws NullPointer
+
     @Override
-    public Gif getGif(Boolean vector) {
-        //TODO 
-        
-        return null;
+    public Gif getUpOrDownGif(Boolean vector) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     

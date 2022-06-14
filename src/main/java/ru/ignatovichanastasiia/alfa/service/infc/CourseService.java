@@ -9,6 +9,6 @@ import ru.ignatovichanastasiia.alfa.domein.Gif;
  */
 public interface CourseService {
     
-    Gif getInformation(String id);
+    Gif getGif(String id);
     
 }
