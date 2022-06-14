@@ -32,8 +32,8 @@ public class CourseController {
     }
     
     @GetMapping("/json-gif/{id}")
-    public String getJsonGif(@PathVariable String id){ 
-        Document gif = service.getGif(id);
+    public Document getJsonGif(@PathVariable String id){ 
+        Document gif = service.getJsonGif(id);
         if(gif!=null){
             return gif;
         }else{
