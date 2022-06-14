@@ -1,6 +1,8 @@
 
 package ru.ignatovichanastasiia.alfa.outserve;
 
+import java.net.URL;
+import javax.swing.text.Document;
 import org.springframework.stereotype.Service;
 import ru.ignatovichanastasiia.alfa.domein.Gif;
 import ru.ignatovichanastasiia.alfa.outserve.infc.GifOutserve;
@@ -16,9 +18,12 @@ public class GifOutserveImpl implements GifOutserve{
 //false = down
 
     @Override
-    public Gif getUpOrDownGif(Boolean vector) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public URL getUpOrDownGif(Boolean vector) {
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
     
-    
+    @Override
+    public Document getUpOrDownJsonGif(Boolean vector){
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

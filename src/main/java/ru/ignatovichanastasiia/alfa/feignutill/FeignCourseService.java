@@ -19,6 +19,8 @@ public interface FeignCourseService {
     @RequestMapping(method=RequestMethod.GET, value="/", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Object> getAllCourses();
     
+    
+    
 }
 
 

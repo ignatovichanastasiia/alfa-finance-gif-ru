@@ -1,7 +1,8 @@
 
 package ru.ignatovichanastasiia.alfa.outserve.infc;
 
-import ru.ignatovichanastasiia.alfa.domein.Gif;
+import java.net.URL;
+import javax.swing.text.Document;
 
 /**
  *
@@ -9,6 +10,8 @@ import ru.ignatovichanastasiia.alfa.domein.Gif;
  */
 public interface GifOutserve {
     
-    Gif getUpOrDownGif(Boolean vector);
+    URL getUpOrDownGif(Boolean vector);
+    
+    Document getUpOrDownJsonGif(Boolean vector);
     
 }
