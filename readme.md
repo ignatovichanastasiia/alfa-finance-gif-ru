@@ -111,11 +111,13 @@ bundle: string  	messaging_non_clips	Возвращает только версии, соответствующие н
 При введении приложения в работу, ключи нужно сменить на постоянные. 
 
 Ключи приложения для GIPHY:
-alfa-up - API Key:
+alfa - API Key:
 AYvKGn4IoBaKZltiQj8auY55llhbkOi7
-alfa-down - API Key:
+alfa - second API Key:
 J0DkR56nQnh5hab8zdmM0K86rafi43vB
 
+Open Exchange Rates
+Ключ позволяет только базу usd 
 
-
-
+//true = up or not changed
+//false = down

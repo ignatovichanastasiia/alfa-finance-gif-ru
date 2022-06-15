@@ -37,7 +37,7 @@ public class CourseController {
         if(gif!=null){
             return gif;
         }else{
-            throw new NullPointerException("gif address is null");
+            throw new NullPointerException("gif is null");
         }
     }
     
