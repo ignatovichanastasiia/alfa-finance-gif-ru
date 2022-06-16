@@ -22,9 +22,9 @@ public class GifOutserveImpl implements GifOutserve {
     @Autowired
     FeignGifAndDocService gifservice;
 
+//    https://api.giphy.com/v1/gifs/search?api_key=J0DkR56nQnh5hab8zdmM0K86rafi43vB&q=broke&limit=1&offset=2
     @Override
     public URL getUpOrDownGif(Boolean vector) {
-        String apiKey = "${gif.service.gif-app-key}";
         String rich = "${gif.service.gif-api-get-url-param-q-rich}";
         String broke = "${gif.service.gif-api-get-url-param-q-broke}";
         String q;
@@ -35,7 +35,8 @@ public class GifOutserveImpl implements GifOutserve {
         }
         int limit = 1;
         int offset = getRandomOffset();
-        Gif gif = gifservice.getGif(apiKey, q, limit, offset);
+        String allPathWithParams = "${gif.service.gif-api-get-url-path-value}"+"?api_key"+"${gif.service.gif-app-key}"+"&q="+q+"&limit="+limit+"&offset="+offset;
+        Gif gif = gifservice.getGif(allPathWithParams);
         if (gif != null) {
             try {
                 URL gifUrl = new URL(gif.getUrl());
@@ -52,7 +53,6 @@ public class GifOutserveImpl implements GifOutserve {
 
     @Override
     public Document getUpOrDownJsonGif(Boolean vector) {
-        String apiKey = "${gif.service.gif-app-key}";
         String rich = "${gif.service.gif-api-get-url-param-q-rich}";
         String broke = "${gif.service.gif-api-get-url-param-q-broke}";
         String q;
@@ -63,7 +63,8 @@ public class GifOutserveImpl implements GifOutserve {
         }
         int limit = Integer.valueOf("${gif.service.gif-api-get-url-param-limit-int}");
         int offset = getRandomOffset();
-        return gifservice.getPageOfGif(apiKey, q, limit, offset);
+        String allPathWithParams = "${gif.service.gif-api-get-url-path-value}"+"?api_key"+"${gif.service.gif-app-key}"+"&q="+q+"&limit="+limit+"&offset="+offset;
+        return gifservice.getPageOfGif(allPathWithParams);
     }
 
     private int getRandomOffset() {

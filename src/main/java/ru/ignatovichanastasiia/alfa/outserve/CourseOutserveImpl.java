@@ -27,7 +27,8 @@ public class CourseOutserveImpl implements CourseOutserve {
     
     @Override
     public Double getCourseToThisDay(String id) {
-        Rates rates = courseService.getAllCoursesToThisDay();
+        String pathPlusParams = "${course.service.url-get-path-with-all-param-latest}";
+        Rates rates = courseService.getAllCoursesToThisDay(pathPlusParams);
         String strCourseId = rates.getAllCourses().get(id).toString();
         try{
         Double courseId = Double.valueOf(strCourseId);
@@ -41,10 +42,8 @@ public class CourseOutserveImpl implements CourseOutserve {
 
     @Override
     public Double getCourseToYesterday(String id) {
-        String datePlusFormatter = ""+getYesterdayDate()+".json";
-        String appId = "${course.service.url-get-param-appID}";
-        String baseCurrency = "${course.serviced.url-get-param-base-currency}";
-        Rates rat = courseService.getAllCoursesToYesterday(datePlusFormatter, appId, baseCurrency);
+        String pathPlusParamsYesterday = "${course.service.url-get-path-api-historical}"+getYesterdayDate()+".json"+"?app_id="+"${course.service.url-get-param-appID}"+"&base="+"${course.serviced.url-get-param-base-currency}";
+        Rates rat = courseService.getAllCoursesToYesterday(pathPlusParamsYesterday);
         String strCourseId = rat.getAllCourses().get(id).toString();
         try{
         Double courseId = Double.valueOf(strCourseId);

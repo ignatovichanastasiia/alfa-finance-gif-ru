@@ -5,7 +5,6 @@ import feign.Param;
 import javax.swing.text.Document;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.ignatovichanastasiia.alfa.domein.Gif;
@@ -24,10 +23,10 @@ import ru.ignatovichanastasiia.alfa.domein.Gif;
 @FeignClient(value="${gif.service.name}",url="${gif.service.gif-api-url}")
 public interface FeignGifAndDocService {
     
-    @RequestMapping(method=RequestMethod.GET, value="${gif.service.gif-api-get-url-path-value}", produces = MediaType.APPLICATION_JSON_VALUE)
-    Document getPageOfGif(@Param ("api_key") String apiKey, @Param ("q") String q, @Param ("limit") int limit, @Param ("offset") int offset);
+    @RequestMapping(method=RequestMethod.GET, value="{allPathWithParams}", produces = MediaType.APPLICATION_JSON_VALUE)
+    Document getPageOfGif(@Param ("allPathWithParams") String allPathWithParam);
     
-    @RequestMapping(method=RequestMethod.GET, value="${gif.service.gif-api-get-url-path-value}", produces = MediaType.APPLICATION_JSON_VALUE)
-    Gif getGif(@Param ("api_key") String apiKey, @Param ("q") String q, @Param ("limit") int limit, @Param ("offset") int offset);
+    @RequestMapping(method=RequestMethod.GET, value="{allPathWithParams}", produces = MediaType.APPLICATION_JSON_VALUE)
+    Gif getGif(@Param ("allPathWithParams") String allPathWithParam);
     
 }

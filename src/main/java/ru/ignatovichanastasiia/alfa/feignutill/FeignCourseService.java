@@ -26,15 +26,14 @@ import ru.ignatovichanastasiia.alfa.domein.Rates;
 public interface FeignCourseService {
     
     @RequestMapping(method=RequestMethod.GET, 
-            value=(""+"${course.service.url-get-path-latest}"+"${course.service.url-get-path-endformatter}"+"?"
-            +"app_id="+"${course.service.url-get-param-appID}"+"&"+"base="+"${course.serviced.url-get-param-base-currency}"), produces = MediaType.APPLICATION_JSON_VALUE)
-    Rates getAllCoursesToThisDay();
+            value=("{allPathWithParam}"), produces = MediaType.APPLICATION_JSON_VALUE)
+    Rates getAllCoursesToThisDay(@Param ("allPathWithParam") String allPathWithParam);
     
     
     @RequestMapping(method=RequestMethod.GET, 
-            value=(""+"${course.service.url-get-path-historical}"), produces = MediaType.APPLICATION_JSON_VALUE)
+            value=("{allPathWithParams}"), produces = MediaType.APPLICATION_JSON_VALUE)
     Rates getAllCoursesToYesterday(
-        @PathVariable String datePlusFormatter, @Param("app_id") String appID, @Param ("base") String baseCurrency);   
+        @Param ("allPathWithParams") String allPathWithParam);   
 
 }
 
