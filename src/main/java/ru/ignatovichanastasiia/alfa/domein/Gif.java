@@ -4,30 +4,105 @@
  */
 package ru.ignatovichanastasiia.alfa.domein;
 
-import com.google.gson.annotations.SerializedName;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  *
  * @author ignatovichanastasiia 
  */
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
-public class Gif {
+
+public class Gif {    
     
     private String type;
     private String id;
     private String slut;
     private String url;
-    @SerializedName("bitly_url")
     private String bitlyUrl;
-    @SerializedName("embed_url")
     private String embedUrl;
     private String username;
     private String sourse;
+
+        public Gif() {
+    }
+
+    public Gif(String type, String id, String slut, String url, String bitlyUrl, String embedUrl, String username, String sourse) {
+        this.type = type;
+        this.id = id;
+        this.slut = slut;
+        this.url = url;
+        this.bitlyUrl = bitlyUrl;
+        this.embedUrl = embedUrl;
+        this.username = username;
+        this.sourse = sourse;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getSlut() {
+        return slut;
+    }
+
+    public void setSlut(String slut) {
+        this.slut = slut;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getBitlyUrl() {
+        return bitlyUrl;
+    }
+
+    public void setBitlyUrl(String bitlyUrl) {
+        this.bitlyUrl = bitlyUrl;
+    }
+
+    public String getEmbedUrl() {
+        return embedUrl;
+    }
+
+    public void setEmbedUrl(String embedUrl) {
+        this.embedUrl = embedUrl;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getSourse() {
+        return sourse;
+    }
+
+    public void setSourse(String sourse) {
+        this.sourse = sourse;
+    }
+    
+    
+    
+    
+}
 
 //bitly_url: string
 //The unique bit.ly URL for this GIF	"http://gph.is/1gsWDcL"
@@ -59,5 +134,3 @@ public class Gif {
 //An object containing data for various available formats and sizes of this GIF.	
 //title: string
 //The title that appears on giphy.com for this GIF.	"Happy Dancing GIF"
-    
-}

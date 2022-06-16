@@ -4,7 +4,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import javax.swing.text.Document;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
 import ru.ignatovichanastasiia.alfa.domein.Gif;
 import ru.ignatovichanastasiia.alfa.feignutill.FeignGifAndDocService;
 import ru.ignatovichanastasiia.alfa.outserve.infc.GifOutserve;
@@ -13,10 +14,10 @@ import ru.ignatovichanastasiia.alfa.outserve.infc.GifOutserve;
  *
  * @author ignatovichanastasiia
  */
-@Service
+
+@Qualifier("GifOutserve")
+@Repository
 public class GifOutserveImpl implements GifOutserve {
-//true = up or not changed
-//false = down
 
     @Autowired
     FeignGifAndDocService gifservice;
@@ -69,4 +70,7 @@ public class GifOutserveImpl implements GifOutserve {
         int range = Integer.valueOf("${gif.service.gif-app-limit-offset-int}");
         return (int) (Math.random() * range);
     }
+  
 }
+//true = up or not changed
+//false = down

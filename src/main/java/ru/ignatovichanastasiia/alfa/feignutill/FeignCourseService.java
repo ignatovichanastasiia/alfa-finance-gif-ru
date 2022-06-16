@@ -2,11 +2,11 @@
 package ru.ignatovichanastasiia.alfa.feignutill;
 
 import feign.Param;
-import java.io.IOException;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import ru.ignatovichanastasiia.alfa.domein.Rates;
 
@@ -29,7 +29,6 @@ public interface FeignCourseService {
             value=(""+"${course.service.url-get-path-latest}"+"${course.service.url-get-path-endformatter}"+"?"
             +"app_id="+"${course.service.url-get-param-appID}"+"&"+"base="+"${course.serviced.url-get-param-base-currency}"), produces = MediaType.APPLICATION_JSON_VALUE)
     Rates getAllCoursesToThisDay();
-    
     
     
     @RequestMapping(method=RequestMethod.GET, 

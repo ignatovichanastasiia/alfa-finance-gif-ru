@@ -3,22 +3,28 @@ package ru.ignatovichanastasiia.alfa.service;
 import java.net.URL;
 import javax.swing.text.Document;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import ru.ignatovichanastasiia.alfa.outserve.CourseOutserveImpl;
-import ru.ignatovichanastasiia.alfa.outserve.GifOutserveImpl;
+import ru.ignatovichanastasiia.alfa.outserve.infc.CourseOutserve;
+import ru.ignatovichanastasiia.alfa.outserve.infc.GifOutserve;
 import ru.ignatovichanastasiia.alfa.service.infc.CourseService;
 
 /**
  *
  * @author ignatovichanastasiia
  */
+@Qualifier("CourseService")
 @Service
 public class CourseServiceImpl implements CourseService {
 
     @Autowired
-    private CourseOutserveImpl courseout;
+    @Qualifier("CourseOutserve")
+    private CourseOutserve courseout;
     @Autowired
-    private GifOutserveImpl gifout;
+    @Qualifier("GifOutserve")
+    private GifOutserve gifout;
+ 
+        
 
     @Override
     public URL getGif(String id) {
@@ -54,5 +60,6 @@ public class CourseServiceImpl implements CourseService {
     private Double getCourseToYesterday(String id) {
         return courseout.getCourseToYesterday(id);
     }
+
 
 }
