@@ -6,8 +6,8 @@
 В случае обращения к /json-gif/ - ответом будет полный документ Gif объекта, который выдает по запросу GIPHY.
 
 Примеры запроса к программе alfa: 
-http://localhost8080/course/gif/BTH
-http://localhost8080/course/json-gif/BTH
+http://localhost:8080/course/gif/BTH
+http://localhost:8080/course/json-gif/BTH
 Список всех валют и их сокращения в файле currency.md
 
 

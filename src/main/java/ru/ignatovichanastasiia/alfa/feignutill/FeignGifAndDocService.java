@@ -4,6 +4,7 @@ package ru.ignatovichanastasiia.alfa.feignutill;
 import feign.Param;
 import javax.swing.text.Document;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,7 +21,8 @@ import ru.ignatovichanastasiia.alfa.domein.Gif;
 //https://api.giphy.com/v1/gifs/search?api_key=AYvKGn4IoBaKZltiQj8auY55llhbkOi7&q=rich&limit=1&offset=10
 
 
-@FeignClient(value="${gif.service.name}",url="${gif.service.gif-api-url}")
+@PropertySource("application.properties")
+@FeignClient(value="${gif.service.name}",url="${gif.service.gif-api-url}",configuration = FeignGifConfiguration.class)
 public interface FeignGifAndDocService {
     
     @RequestMapping(method=RequestMethod.GET, value="{allPathWithParams}", produces = MediaType.APPLICATION_JSON_VALUE)

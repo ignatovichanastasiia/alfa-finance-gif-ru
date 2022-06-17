@@ -1,8 +1,9 @@
 
 package ru.ignatovichanastasiia.alfa.service.infc;
 
-import java.net.URL;
-import javax.swing.text.Document;
+
+
+import ru.ignatovichanastasiia.alfa.domein.Gif;
 
 /**
  *
@@ -10,8 +11,8 @@ import javax.swing.text.Document;
  */
 public interface CourseService {
     
-    URL getGif(String id);
+    String getGif(String id);
     
-    Document getJsonGif(String id);
+    Gif getJsonGif(String id);
     
 }

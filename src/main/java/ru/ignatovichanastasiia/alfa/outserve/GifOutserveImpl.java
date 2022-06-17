@@ -1,10 +1,10 @@
 package ru.ignatovichanastasiia.alfa.outserve;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import javax.swing.text.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Repository;
 import ru.ignatovichanastasiia.alfa.domein.Gif;
 import ru.ignatovichanastasiia.alfa.feignutill.FeignGifAndDocService;
@@ -17,59 +17,83 @@ import ru.ignatovichanastasiia.alfa.outserve.infc.GifOutserve;
 
 @Qualifier("GifOutserve")
 @Repository
+@PropertySource("application.properties")
 public class GifOutserveImpl implements GifOutserve {
 
+    @Value("${gif.service.gif-api-get-url-param-q-rich}")
+    String rich;
+    
+    @Value("${gif.service.gif-api-get-url-param-q-broke}")
+    String broke;
+    
+    @Value("${gif.service.gif-api-get-url-path-value}")
+    String urlPathValue;
+    
+    @Value("${gif.service.gif-app-key}")
+    String appKey;
+    
+    @Value("${gif.service.gif-api-get-url-param-limit-int}")
+    String propertyLimit;
+    
     @Autowired
     FeignGifAndDocService gifservice;
 
-//    https://api.giphy.com/v1/gifs/search?api_key=J0DkR56nQnh5hab8zdmM0K86rafi43vB&q=broke&limit=1&offset=2
     @Override
-    public URL getUpOrDownGif(Boolean vector) {
-        String rich = "${gif.service.gif-api-get-url-param-q-rich}";
-        String broke = "${gif.service.gif-api-get-url-param-q-broke}";
-        String q;
-        if (vector) {
-            q = rich;
-        } else {
-            q = broke;
-        }
+    public String getUpOrDownGif(Boolean vector) {
+        System.out.println("getUpOrDownGif method");
+        String q = getQ(vector);
         int limit = 1;
         int offset = getRandomOffset();
-        String allPathWithParams = "${gif.service.gif-api-get-url-path-value}"+"?api_key"+"${gif.service.gif-app-key}"+"&q="+q+"&limit="+limit+"&offset="+offset;
+        StringBuilder bl = new StringBuilder();
+        bl.append(urlPathValue);
+        bl.append("?api_key");
+        bl.append(appKey);
+        bl.append("&q=");
+        bl.append(q);
+        bl.append("&limit=");
+        bl.append(limit);
+        bl.append("&offset=");
+        bl.append(offset);
+        String allPathWithParams = bl.toString();
         Gif gif = gifservice.getGif(allPathWithParams);
-        if (gif != null) {
-            try {
-                URL gifUrl = new URL(gif.getUrl());
-                return gifUrl;
-            } catch (MalformedURLException ex) {
-                ex.printStackTrace();
-                throw new NullPointerException("There is no correct URL of GIF");
-            }
-        } else {
-            throw new NullPointerException("There is no GIF");
-        }
-
+        String gifUrl = gif.getUrl();
+        System.out.println("gifUrl= "+gifUrl);
+        return gifUrl;
     }
 
     @Override
-    public Document getUpOrDownJsonGif(Boolean vector) {
-        String rich = "${gif.service.gif-api-get-url-param-q-rich}";
-        String broke = "${gif.service.gif-api-get-url-param-q-broke}";
-        String q;
-        if (vector) {
-            q = rich;
-        } else {
-            q = broke;
-        }
-        int limit = Integer.valueOf("${gif.service.gif-api-get-url-param-limit-int}");
+    public Gif getUpOrDownJsonGif(Boolean vector) {
+        System.out.println("getUpOrDownJsonGif method");
+        String q = getQ(vector);
+        int propertyLt = Integer.valueOf(propertyLimit);
         int offset = getRandomOffset();
-        String allPathWithParams = "${gif.service.gif-api-get-url-path-value}"+"?api_key"+"${gif.service.gif-app-key}"+"&q="+q+"&limit="+limit+"&offset="+offset;
-        return gifservice.getPageOfGif(allPathWithParams);
+        StringBuilder bl = new StringBuilder();
+        bl.append(urlPathValue);
+        bl.append("?api_key");
+        bl.append(appKey);
+        bl.append("&q=");
+        bl.append(q);
+        bl.append("&limit=");
+        bl.append(propertyLt);
+        bl.append("&offset=");
+        bl.append(offset);
+        String allPathWithParams = bl.toString();
+        Gif gif = gifservice.getGif(allPathWithParams);
+        System.out.println("gif= "+gif.toString());
+        return gif;
     }
 
     private int getRandomOffset() {
         int range = Integer.valueOf("${gif.service.gif-app-limit-offset-int}");
         return (int) (Math.random() * range);
+    }
+    
+    private String getQ(boolean b){
+        if (b) {
+            return rich;
+        } else {
+            return broke;
+        }
     }
   
 }
