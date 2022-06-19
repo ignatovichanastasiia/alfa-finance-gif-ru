@@ -1,3 +1,4 @@
+
 package ru.ignatovichanastasiia.alfa.feignutill;
 
 import feign.Feign;
@@ -11,12 +12,14 @@ import org.springframework.context.annotation.Import;
 /**
  *
  * @author ignatovichanastasiia
+ * 
  */
+
 @Import(FeignClientsConfiguration.class)
 @Configuration
-public class FeignCourseConfiguration {
+public class FeignStringConfiguration {
 
-    String getRates(Decoder feignDecoder, Encoder feignEncoder) {
+    String getGif(Decoder feignDecoder, Encoder feignEncoder) {
         return Feign.builder()
                 .decoder(feignDecoder)
                 .encoder(feignEncoder)
@@ -26,5 +29,4 @@ public class FeignCourseConfiguration {
                         )
                 );
     }
-
 }

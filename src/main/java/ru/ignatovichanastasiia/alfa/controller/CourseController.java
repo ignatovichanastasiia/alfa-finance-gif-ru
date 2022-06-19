@@ -1,8 +1,8 @@
-
 package ru.ignatovichanastasiia.alfa.controller;
 
-
-import javax.swing.text.Document;
+import java.net.MalformedURLException;
+import java.net.URL;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,37 +16,41 @@ import ru.ignatovichanastasiia.alfa.service.infc.CourseService;
  *
  * @author ignatovichanastasiia
  */
-
 @RestController
 @RequestMapping("/course")
 public class CourseController {
-   
-    
+
     @Autowired
     @Qualifier("CourseService")
     private CourseService service;
 
     @GetMapping("/test")
-    public String getTest(){
+    public String getTest() {
         return "Hello";
     }
-    
+
     @GetMapping("/gif/{id}")
-    public String getGif(@PathVariable String id){ 
-        String url = service.getGif(id);
-        if(url!=null){
-            return url;
-        }else{
+    public void getGif(@PathVariable String id, HttpServletResponse httpServletResponse){
+        String gifUrl = service.getGif(id);
+        if (gifUrl == null) {
             throw new NullPointerException("gif address is null");
-        }
+        } 
+        httpServletResponse.setHeader("Location", gifUrl);
+        httpServletResponse.setStatus(302);
     }
     
+    
+    @GetMapping("/gifJS/{id}")
+    public String getGifJS(@PathVariable String id){
+        return service.getGifJS(id); 
+    }
+
     @GetMapping("/json-gif/{id}")
-    public Gif getJsonGif(@PathVariable String id){ 
-        Gif gif = service.getJsonGif(id);
-        if(gif!=null){
+    public String getJsonGif(@PathVariable String id) {
+        String gif = service.getJsonGif(id);
+        if (gif != null) {
             return gif;
-        }else{
+        } else {
             throw new NullPointerException("gif is null");
         }
     }

@@ -6,7 +6,6 @@ package ru.ignatovichanastasiia.alfa.domein;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -15,6 +14,7 @@ import lombok.Setter;
  *
  * @author ignatovichanastasiia 
  */
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -33,7 +33,7 @@ public class Gif {
     private String rating;
     @SerializedName ("content_url")
     private String contentUrl;
-    private Object User;
+//    private Object User;
     @SerializedName ("source_tld")
     private String sourseTld;
     @SerializedName ("source_post_url")
@@ -46,7 +46,7 @@ public class Gif {
     private String importDatetime;
     @SerializedName ("trending_datetime")
     private String trendingDatetime;
-    private Object images;
+//    private Object images;
     private String title;
 
     public String getType() {
@@ -89,9 +89,9 @@ public class Gif {
         return contentUrl;
     }
 
-    public Object getUser() {
-        return User;
-    }
+//    public Object getUser() {
+//        return User;
+//    }
 
     public String getSourseTld() {
         return sourseTld;
@@ -117,14 +117,12 @@ public class Gif {
         return trendingDatetime;
     }
 
-    public Object getImages() {
-        return images;
-    }
+//    public Object getImages() {
+//        return images;
+//    }
 
     public String getTitle() {
         return title;
     }
-    
-    
 }
 
