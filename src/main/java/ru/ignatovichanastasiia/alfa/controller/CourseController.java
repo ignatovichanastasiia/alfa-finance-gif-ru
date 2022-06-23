@@ -1,7 +1,5 @@
 package ru.ignatovichanastasiia.alfa.controller;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -9,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.ignatovichanastasiia.alfa.domein.Gif;
 import ru.ignatovichanastasiia.alfa.service.infc.CourseService;
 
 /**
@@ -55,3 +52,5 @@ public class CourseController {
         }
     }
 }
+
+//Optional.ofNullable(response...()).map(Response::get...).orElse(BACKUP_FACT);

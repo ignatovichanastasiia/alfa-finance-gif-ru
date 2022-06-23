@@ -22,7 +22,7 @@ import ru.ignatovichanastasiia.alfa.domein.Gif;
 @FeignClient(value="gif",url="${foreign.gif.url}",configuration = FeignStringConfiguration.class)
 public interface FeignGifService {
     
-    @RequestMapping(method=RequestMethod.GET, value="/{path}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method=RequestMethod.GET, value="/{path}", produces = {"Content-Type", MediaType.APPLICATION_JSON_VALUE})
     String getGif(@PathVariable ("path") String path, @RequestParam ("api_key") String apiKey, @RequestParam ("q") String q,@RequestParam ("limit") String limit, @RequestParam ("offset") int offset);
        
 }
