@@ -44,7 +44,7 @@ public class GifOutserveImpl implements GifOutserve {
     //true = up or not changed
     //false = down
     @Override
-    public String getUpOrDownGif(Boolean vector) {
+    public String getUpOrDownGif(Boolean vector) throws IllegalArgumentException{
         System.out.println("getUpOrDownGif method");
         String q = getQ(vector);
         int offset = getRandomOffset();
@@ -55,7 +55,7 @@ public class GifOutserveImpl implements GifOutserve {
     }
 
     @Override
-    public String getUpOrDownJsonGif(Boolean vector) {
+    public String getUpOrDownJsonGif(Boolean vector) throws IllegalArgumentException{
         System.out.println("getUpOrDownGif method");
         String q = getQ(vector);
         int offset = getRandomOffset();

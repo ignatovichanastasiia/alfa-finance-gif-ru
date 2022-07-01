@@ -23,7 +23,7 @@ public class CourseServiceImpl implements CourseService {
     private GifOutserve gifout;
 
     @Override
-    public String getGif(String id) {
+    public String getGif(String id) throws IllegalArgumentException{
         Double courseToThisDay = getCourseToThisDay(id);
         Double courseToYesterday = getCourseToYesterday(id);
         Boolean vector = false;
@@ -35,12 +35,12 @@ public class CourseServiceImpl implements CourseService {
     
     
     @Override
-    public String getGifJS(String id){
+    public String getGifJS(String id)throws IllegalArgumentException{
         return getGif(id);
     }
 
     @Override
-    public String getJsonGif(String id) {
+    public String getJsonGif(String id) throws IllegalArgumentException{
         Double courseToThisDay = getCourseToThisDay(id);
         Double courseToYesterday = getCourseToYesterday(id);
         Boolean vector = false;
@@ -50,7 +50,7 @@ public class CourseServiceImpl implements CourseService {
         return gifout.getUpOrDownJsonGif(vector);
     }
 
-    private Double getCourseToThisDay(String id) {
+    private Double getCourseToThisDay(String id) throws IllegalArgumentException {
         Double crs = courseout.getCourseToThisDay(id);
         if(crs==null){
             throw new NullPointerException("Double (this day course) is null");
@@ -58,7 +58,7 @@ public class CourseServiceImpl implements CourseService {
         return crs;
     }
 
-    private Double getCourseToYesterday(String id) {
+    private Double getCourseToYesterday(String id) throws IllegalArgumentException {
         Double crsY = courseout.getCourseToYesterday(id);
         if(crsY==null){
             throw new NullPointerException("Double (yesterday course) is null");

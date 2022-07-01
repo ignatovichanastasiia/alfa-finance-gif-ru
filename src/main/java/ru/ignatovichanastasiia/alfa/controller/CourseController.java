@@ -28,29 +28,36 @@ public class CourseController {
 
     @GetMapping("/gif/{id}")
     public void getGif(@PathVariable String id, HttpServletResponse httpServletResponse){
-        String gifUrl = service.getGif(id);
-        if (gifUrl == null) {
-            throw new NullPointerException("gif address is null");
-        } 
-        httpServletResponse.setHeader("Location", gifUrl);
-        httpServletResponse.setStatus(302);
+        try{
+            String gifUrl = service.getGif(id); 
+            httpServletResponse.setHeader("Location", gifUrl);
+            httpServletResponse.setStatus(302);
+        }catch(IllegalArgumentException e){
+            e.printStackTrace();
+            httpServletResponse.setStatus(404);
+        }
     }
     
-    
     @GetMapping("/gifJS/{id}")
-    public String getGifJS(@PathVariable String id){
-        return service.getGifJS(id); 
+    public String getGifJS(@PathVariable String id, HttpServletResponse httpServletResponse){
+        try{
+            return service.getGifJS(id);
+            }catch(IllegalArgumentException e){
+            e.printStackTrace();
+            httpServletResponse.setStatus(404);
+            return null;
+            } 
     }
 
     @GetMapping("/json-gif/{id}")
-    public String getJsonGif(@PathVariable String id) {
-        String gif = service.getJsonGif(id);
-        if (gif != null) {
-            return gif;
-        } else {
-            throw new NullPointerException("gif is null");
-        }
+    public String getJsonGif(@PathVariable String id, HttpServletResponse httpServletResponse) {
+        try{
+            return service.getJsonGif(id);
+        }catch(IllegalArgumentException e){
+            e.printStackTrace();
+            httpServletResponse.setStatus(404);
+            return null;
+        } 
     }
 }
 
-//Optional.ofNullable(response...()).map(Response::get...).orElse(BACKUP_FACT);

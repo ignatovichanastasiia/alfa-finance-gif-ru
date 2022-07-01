@@ -57,7 +57,7 @@ public class CourseOutserveImpl implements CourseOutserve {
     }
 
     @Override
-    public Double getCourseToYesterday(String id) {
+    public Double getCourseToYesterday(String id) throws IllegalArgumentException{
         System.out.println("getCourseToYesterday");
         StringBuilder bl = new StringBuilder();
         bl.append(historical);
