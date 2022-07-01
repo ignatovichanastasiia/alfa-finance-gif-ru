@@ -1,6 +1,8 @@
 package ru.ignatovichanastasiia.alfa.controller;
 
 import javax.servlet.http.HttpServletResponse;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,17 +15,22 @@ import ru.ignatovichanastasiia.alfa.service.infc.CourseService;
  *
  * @author ignatovichanastasiia
  */
+
 @RestController
 @RequestMapping("/course")
 public class CourseController {
+    
+    Logger logger = LogManager.getLogger(CourseController.class);
 
     @Autowired
     @Qualifier("CourseService")
     private CourseService service;
+    
 
     @GetMapping("/test")
     public String getTest() {
-        return "Hello";
+        logger.info("This is test debug message");
+        return "Hello, you get app's test response";
     }
 
     @GetMapping("/gif/{id}")
@@ -34,6 +41,7 @@ public class CourseController {
             httpServletResponse.setStatus(302);
         }catch(IllegalArgumentException e){
             e.printStackTrace();
+            logger.info("getGif meth. illegal exc");
             httpServletResponse.setStatus(404);
         }
     }
@@ -44,6 +52,7 @@ public class CourseController {
             return service.getGifJS(id);
             }catch(IllegalArgumentException e){
             e.printStackTrace();
+            logger.info("getGifJS meth. illegal exc");
             httpServletResponse.setStatus(404);
             return null;
             } 
@@ -55,6 +64,7 @@ public class CourseController {
             return service.getJsonGif(id);
         }catch(IllegalArgumentException e){
             e.printStackTrace();
+            logger.info("getJsonGif meth. illegal exc");
             httpServletResponse.setStatus(404);
             return null;
         } 

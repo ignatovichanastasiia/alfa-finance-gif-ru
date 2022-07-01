@@ -2,6 +2,8 @@ package ru.ignatovichanastasiia.alfa.outserve;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +20,8 @@ import ru.ignatovichanastasiia.alfa.feignutill.FeignGifService;
 @Repository
 @PropertySource("application.properties")
 public class GifOutserveImpl implements GifOutserve {
+    
+    Logger logger = LogManager.getLogger(GifOutserveImpl.class);
 
     @Value("${foreign.gif.path}")
     String path;
@@ -45,18 +49,17 @@ public class GifOutserveImpl implements GifOutserve {
     //false = down
     @Override
     public String getUpOrDownGif(Boolean vector) throws IllegalArgumentException{
-        System.out.println("getUpOrDownGif method");
+        logger.info("getUpOrDownGif method");
         String q = getQ(vector);
         int offset = getRandomOffset();
         String gif = gifservice.getGif(path, apiKey, q, limit, offset);
-
         String gifUrl = getUrlFromString(gif);
         return gifUrl;
     }
 
     @Override
     public String getUpOrDownJsonGif(Boolean vector) throws IllegalArgumentException{
-        System.out.println("getUpOrDownGif method");
+        logger.info("getUpOrDownGif method");
         String q = getQ(vector);
         int offset = getRandomOffset();
         String gif = gifservice.getGif(path, apiKey, q, limit, offset);

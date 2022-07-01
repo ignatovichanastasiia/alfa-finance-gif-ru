@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,6 +29,8 @@ import ru.ignatovichanastasiia.alfa.outserve.infc.CourseOutserve;
 public class CourseOutserveImpl implements CourseOutserve {
 
     final Gson gson = new Gson();
+    
+    Logger logger = LogManager.getLogger(CourseOutserveImpl.class);
 
     @Value("${foreign.course.path-latest}")
     String pathForLates;
@@ -49,8 +53,7 @@ public class CourseOutserveImpl implements CourseOutserve {
 
     @Override
     public Double getCourseToThisDay(String id) throws IllegalArgumentException{
-        System.out.println("getCourseToThisDay method");
-        System.out.println("path = " + pathForLates);
+        logger.info("getCourseToThisDay method: "+"path = " + pathForLates);
         String rates = courseService.getAllCoursesToThisDay(pathForLates,appID,base);
         String rate = getRateFromString(rates,id);
         return Double.valueOf(rate);
@@ -58,13 +61,12 @@ public class CourseOutserveImpl implements CourseOutserve {
 
     @Override
     public Double getCourseToYesterday(String id) throws IllegalArgumentException{
-        System.out.println("getCourseToYesterday");
         StringBuilder bl = new StringBuilder();
         bl.append(historical);
         bl.append(getYesterdayDate());
         bl.append(".json");
         String pathYesterday = bl.toString();
-        System.out.println(pathYesterday);
+        logger.info("getCourseToYesterday method: "+"path = "+pathYesterday);
         String rat = courseService.getAllCoursesToYesterday(pathYesterday,appID,base);
         String rate = getRateFromString(rat,id);
         return Double.valueOf(rate);
@@ -73,7 +75,7 @@ public class CourseOutserveImpl implements CourseOutserve {
     private String getYesterdayDate() {
         LocalDate td = LocalDate.now();
         LocalDate yd = td.plusDays(-1);
-        System.out.println(yd);
+        logger.info("getYesterdayDate method: "+"date = "+yd);
         return yd.toString();
     }
 
