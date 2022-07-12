@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 //this day course https://openexchangerates.org/api/latest.json?app_id=YOUR_APP_ID&base=USD
 //y-day course https://openexchangerates.org/api/historical/2013-02-16.json?app_id=YOUR_APP_ID&base=USD
 
-
 @FeignClient(value="openexchangerates", url="${foreign.course.url}", configuration = FeignCourseConfiguration.class)
 public interface FeignCourseService {
     

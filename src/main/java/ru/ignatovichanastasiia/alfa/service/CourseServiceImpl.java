@@ -11,6 +11,8 @@ import ru.ignatovichanastasiia.alfa.service.infc.CourseService;
  *
  * @author ignatovichanastasiia
  */
+
+//3 letter, status 400
 @Qualifier("CourseService")
 @Service
 public class CourseServiceImpl implements CourseService {

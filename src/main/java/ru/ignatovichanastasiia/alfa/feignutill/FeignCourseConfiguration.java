@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Import;
  *
  * @author ignatovichanastasiia
  */
+
 @Import(FeignClientsConfiguration.class)
 @Configuration
 public class FeignCourseConfiguration {

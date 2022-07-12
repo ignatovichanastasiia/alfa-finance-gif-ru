@@ -16,6 +16,7 @@ import ru.ignatovichanastasiia.alfa.feignutill.FeignGifService;
  *
  * @author ignatovichanastasiia
  */
+
 @Qualifier("GifOutserve")
 @Repository
 @PropertySource("application.properties")
@@ -49,7 +50,7 @@ public class GifOutserveImpl implements GifOutserve {
     //false = down
     @Override
     public String getUpOrDownGif(Boolean vector) throws IllegalArgumentException{
-        logger.info("getUpOrDownGif method");
+        logger.info("getUpOrDownGif method "+vector);
         String q = getQ(vector);
         int offset = getRandomOffset();
         String gif = gifservice.getGif(path, apiKey, q, limit, offset);
@@ -59,8 +60,8 @@ public class GifOutserveImpl implements GifOutserve {
 
     @Override
     public String getUpOrDownJsonGif(Boolean vector) throws IllegalArgumentException{
-        logger.info("getUpOrDownGif method");
         String q = getQ(vector);
+        logger.info("getUpOrDownGif method "+vector);
         int offset = getRandomOffset();
         String gif = gifservice.getGif(path, apiKey, q, limit, offset);
         return gif;
