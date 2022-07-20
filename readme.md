@@ -130,8 +130,6 @@ random_id: string               -               Идентификатор / прокси для конкр
 
 bundle: string  	messaging_non_clips	Возвращает только версии, соответствующие названному пакету. Подробнее о версиях.
 
-
-
 СЕРВИС OPEN EXCHANGE RATES
 
 Приложение Alfa делает два запроса к сервиу openexchangerates за время обработки одного запроса. 
@@ -141,8 +139,28 @@ bundle: string  	messaging_non_clips	Возвращает только версии, соответствующие н
 Подробная информация https://docs.openexchangerates.org/docs/historical-json
 Демо ключ позволяет использовать в качестве базовой валюты USB.
 
+<<<<<<< HEAD
+СЕРВИС OPEN EXCHANGE RATES
+=======
+Список поддерживаемых валюс лежит в файле currency.md
+либо по адресу сервиса openexchangerates: https://docs.openexchangerates.org/docs/supported-currencies 
+>>>>>>> origin/master
+
+<<<<<<< HEAD
+Приложение Alfa делает два запроса к сервиу openexchangerates за время обработки одного запроса. 
+Первый запрос отправляется для получения текущего курса указанной пользователем валюты. 
+Подробная информация https://docs.openexchangerates.org/docs/latest-json
+Второй запрос отправляется для получения курса указанной валюты за вчерашний день
+Подробная информация https://docs.openexchangerates.org/docs/historical-json
+Демо ключ позволяет использовать в качестве базовой валюты USB.
+=======
+>>>>>>> origin/master
+
+<<<<<<< HEAD
 Список поддерживаемых валюс лежит в файле currency.md
 либо по адресу сервиса openexchangerates: https://docs.openexchangerates.org/docs/supported-currencies 
 
 
+=======
 
+>>>>>>> origin/master
