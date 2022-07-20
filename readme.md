@@ -1,92 +1,103 @@
-Программа Alfa принимает get запросы: 
-{home}/course/gif/{id}
-{home}/course/json-gif/{id}
+ТЕХНИЧЕСКОЕ ЗАДАНИЕ К ПРОГРАММЕ ALFA:
+
+Сервис на Spring Boot 2 + Java 
+Запросы приходят на HTTP endpoint (должен быть написан в соответствии с rest conventions), 
+туда передается код валюты по отношению с которой сравнивается USD
+Для взаимодействия с внешними сервисами используется Feign
+Все параметры (валюта по отношению к которой смотрится курс, адреса внешних сервисов и т.д.) 
+вынесены в настройки
+Для сборки должен использоваться Gradle
+
+Программа Alfa принимает GET запросы.
+ 
+СИНТАКСИС:  
+
+{home}/course/test - чтобы получить тестовый ответ от приложения.
+{home}/course/gif/{id} - чтобы получить редирект по выданной на gif ссылке.
+{home}/course/gif/ref/{id} - чтобы получить ссылку на gif.
+{home}/course/gif/data/{id} - чтобы получить полные данные о gif + ссылки на gif в различном размере. 
+
 где {id} - это сокращенное название интересуемой валюты. 
-В случае обращения к /gif/ - в ответ придет ссылка на gif объект.
-В случае обращения к /json-gif/ - ответом будет полный документ Gif объекта, который выдает по запросу GIPHY.
+Gif выдаются с сервиса GIPHY.
+
+ВОЗВРАЩАЕМЫЙ ОБЪЕКТ:
+
+Возвращаемый объект программы alfa: 
+либо редирект по ссылке на gif, 
+либо ссылка на gif, 
+либо полный документ объекта Gif.
+
+ПРИМЕРЫ: 
 
 Примеры запроса к программе alfa: 
 http://localhost:8080/course/gif/BTH
-http://localhost:8080/course/json-gif/BTH
-Список всех валют и их сокращения в файле currency.md
+http://localhost:8080/course/gif/ref/SOS
+http://localhost:8080/course/gif/data/BAM
 
+ПАРАМЕТР ВАЛЮТЫ В ПРИЛОЖЕНИИ ALFA:
 
-Настройки приложения Alfa(файл application properties)
+Список всех валют, поддерживаемых приложением alfa и их сокращения в файле currency.md
+
+НАСТРОЙКИ ПРИЛОЖЕНИЯ ALFA
+
+(настройки приложения выведены в файле application properties)
 
 -- порт --
 server.port=8080
 
--- название обращения -- 
-gif.service.up-name=gif-service-up
+-- адрес gif сервиса + path и параметры --
+foreign.gif.url=https://api.giphy.com
+foreign.gif.path=v1/gifs/search
+foreign.gif.param-q-rich=rich
+foreign.gif.param-q-broke=broke
+- приложение работает только со значением limit=1 -
+foreign.gif.param-limit=1
+- ключ расчитан на 100 запросов, далее он должен быть заменен -
+foreign.gif.param-api_key=J0DkR56nQnh5hab8zdmM0K86rafi43vB
+- рандом выбирает число в диапазоне от 0 до указанного значения. Значение может быть от 0 до 4999 -
+foreign.gif.limit_offset=500
 
--- ключ --
-gif.service.up-gif-app-key=AYvKGn4IoBaKZltiQj8auY55llhbkOi7
+-- адрес сервиса курса валют + path + параметры --
+- приложение делает два запроса к сервису, сравнивая вчерашний курс с сегодняшним -
+foreign.course.url=https://openexchangerates.org
+foreign.course.path-latest=api/latest.json
+foreign.course.path-historical=api/historical/
+foreign.course.parh-endformatter=.json
+- демо ключ имеет ограничения -
+foreign.course.param-app_id=8d7224dd749348298567a6cc1f2f9685
+- для демо ключа значение базисной валюты ограничено USD -
+- после смены ключа на основной, значение может быть любым из предоставленого списка сокращений валют -
+foreign.course.param-base=USD
 
--- адрес для GET запроса с параметрами --
-gif.service.up-url=api.giphy.com/v1/gifs/search?api_key=AYvKGn4IoBaKZltiQj8auY55llhbkOi7&q=rich&limit=1
+СЕРВИС GIPHY
 
--- название обращения -- 
-gif.service.down-name=gif-service-down
+GIPHY - источник, с которого добывается адрес gif. Приложение с определенными параметрами 
+обращается к API этого сервиса.
+Возвращаемый объект сервиса GIPHY  - Gif. 
+Всю информацию об объекте можно получить здесь: https://developers.giphy.com/docs/api/schema/#gif-object
+Объект полностью можно получить только по запросу к приложению alfa типа: {home}/course/gif/data/{id}
+В ином случае, приложение получит из данных ссылку на объект и выдаст ее или редирект по ней.
+ 
+ПАРАМЕТРЫ GET ЗАПРОСА ОТ ПРОГРАММЫ ALFA К СЕРВИСУ GIPHY:
 
--- ключ --
-gif.service.down-gif-app-key=J0DkR56nQnh5hab8zdmM0K86rafi43vB
+(приложение настраивает параметры самостоятельно, представленная ниже информация нужна только в случае, 
+если разработчик собрался вторгаться в логику программы)
 
--- адрес для GET запроса с параметрами --
-gif.service.down-url=api.giphy.com/v1/gifs/search?api_key=J0DkR56nQnh5hab8zdmM0K86rafi43vB&q=broke&limit=1
-
--- название обращения --
-course.service.name=course-service
-
--- адрес обращения --
-course.service.url=https://openexchangerates.org/api/
-
--- составные части адреса для GET запроса c параметрами --
-- обращение за последними имеющимися данными -
-course.service.url-get-path-latest=latest
-
-- обращение к сохраненным данным -
-course.service.url-get-path-historical=historical/
-
-- расширение -
-course.service.url-get-path-endformatter=.json
-
-- ключ -
-course.service.url-get-path-appID=app_id=YOUR_APP_ID
-
-- базовая валюта, относительно которой идет сравнение - 
-course.serviced.url-get-path-base-currency=base=USD
-
--- пример GET запроса, который принимает openexchangerates.org --
-#this day course https://openexchangerates.org/api/latest.json?app_id=YOUR_APP_ID&base=USD
-#y-day course https://openexchangerates.org/api/historical/2013-02-16.json?app_id=YOUR_APP_ID&base=USD
-
-
-Возвращаемый объект программы alfa - либо ссылка на gif, либо полный документ объекта Gif.
-
-GIPHY - источник, с которого добывается адрес gif.
-Возвращаемый объект - Gif. Ниже представлены далеко не все параметры объекта. 
-
-type: string(default:"gif")    By default, this is almost always GIF.	"gif"
-id: string                     This GIF's unique ID                     "YsTs5ltWtEhnq"
-slug: string                   The unique slug used in this GIF's URL	"confused-flying-YsTs5ltWtEhnq"
-url: string                    The unique URL for this GIF              "http://giphy.com/gifs/confused-flying-YsTs5ltWtEhnq"
-bitly_url: string              The unique bit.ly URL for this GIF       "http://gph.is/1gsWDcL"
-embed_url: string              A URL used for embedding this GIF        "http://giphy.com/embed/YsTs5ltWtEhnq"
-username: string               The username this GIF is attached to, if applicable	"JoeCool4000"
-source: string                 The page on which this GIF was found	"http://www.reddit.com/r/reactiongifs/comments/1xpyaa/superman_goes_to_hollywood/"
-rating: string                 The MPAA-style rating for this content. Examples include Y, G, PG, PG-13 and R	"g"
-
-Всю информацию об объекте можно получить здесь: https://developers.giphy.com/docs/api/schema/#gif-object 
-
-
-GET запрос к GIPHY в программе Alfa имеет параметры: 
-api-key (ключи указаны в настройках и описаны выше), 
+api-key (ключи указаны в настройках и описаны выше. 
+Для доступа к gif через API GIPHY необходимы ключи. Бета ключи рассчитаны на 100 доступов. 
+При введении приложения в работу, ключи нужно сменить на постоянные.),
 q ("rich" или "broke" в зависимости от подъема или снижения курса запрашиваемой валюты относительно базовой установленной), 
-limit (=1).
-В логике программы добавляется значение offset для обеспечения random. 
+(Приложение alfa обращается по адресу rich или broke, руководствуясь полученным после 
+сравнения курсов значением boolean
+true = up or not changed
+false = down)
+limit (=1). Для нормальной работы приложения значение должно быть 1. 
+Засчет значения offset, приложение реализует random-выдачу. 
 Остальный настройки - по умолчанию. 
 
 GET настройки GIPHY API:
+(Перечисленные ниже настройки относятся к сервису GIPHY и могут быть полезны только при изменении запросов к этому сервису)
+
 api_key: строка (обязательно)  YOUR_API_KEY	Ключ API GIPHY.
 q: строка (обязательно)	       cheeseburgers	Поисковый запрос или фраза. Добавление @<username> в любом месте
                                                 параметра q эффективно изменяет поисковый запрос на поиск GIF-файлов 
@@ -106,18 +117,17 @@ lang: string                    en              Укажите язык по умолчанию для ре
 random_id: string               -               Идентификатор / прокси для конкретного пользователя.
 bundle: string  	messaging_non_clips	Возвращает только версии, соответствующие названному пакету. Подробнее о версиях.
 
+СЕРВИС OPEN EXCHANGE RATES
 
-Для доступа к gif через API GIPHY необходимы ключи. Бета ключи рассчитаны на 100 доступов. 
-При введении приложения в работу, ключи нужно сменить на постоянные. 
+Приложение Alfa делает два запроса к сервиу openexchangerates за время обработки одного запроса. 
+Первый запрос отправляется для получения текущего курса указанной пользователем валюты. 
+Подробная информация https://docs.openexchangerates.org/docs/latest-json
+Второй запрос отправляется для получения курса указанной валюты за вчерашний день
+Подробная информация https://docs.openexchangerates.org/docs/historical-json
+Демо ключ позволяет использовать в качестве базовой валюты USB.
 
-Ключи приложения для GIPHY:
-alfa - API Key:
-AYvKGn4IoBaKZltiQj8auY55llhbkOi7
-alfa - second API Key:
-J0DkR56nQnh5hab8zdmM0K86rafi43vB
+Список поддерживаемых валюс лежит в файле currency.md
+либо по адресу сервиса openexchangerates: https://docs.openexchangerates.org/docs/supported-currencies 
 
-Open Exchange Rates
-Ключ позволяет только базу usd 
 
-//true = up or not changed
-//false = down
+
