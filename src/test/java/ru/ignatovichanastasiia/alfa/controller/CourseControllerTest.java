@@ -1,6 +1,5 @@
 package ru.ignatovichanastasiia.alfa.controller;
 
-import java.security.InvalidKeyException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import static org.junit.Assert.*;
