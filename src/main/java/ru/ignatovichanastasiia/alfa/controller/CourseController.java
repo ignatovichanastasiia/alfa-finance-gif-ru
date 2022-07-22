@@ -39,7 +39,7 @@ public class CourseController {
     }
 
     @GetMapping("/gif/{id}")
-    public ResponseEntity<String> getGif(@PathVariable String id) {
+    public ResponseEntity<String> getGifRedirect(@PathVariable String id) {
         try {
             if (id.matches("[a-zA-Z]{3}")) {
                 HttpHeaders headers = new HttpHeaders();
@@ -58,10 +58,10 @@ public class CourseController {
     }
 
     @GetMapping("/gif/ref/{id}")
-    public ResponseEntity<String> getGifJS(@PathVariable String id) {
+    public ResponseEntity<String> getGifRef(@PathVariable String id) {
         try {
             if (id.matches("[a-zA-Z]{3}")) {
-                return new ResponseEntity<>(service.getGifJS(id), HttpStatus.OK);
+                return new ResponseEntity<>(service.getGifRef(id), HttpStatus.OK);
             } else {
                 throw new InvalidKeyException("Bad request: key must be only 3 en letter");
             }
@@ -75,10 +75,10 @@ public class CourseController {
     }
 
     @GetMapping("/gif/data/{id}")
-    public ResponseEntity<String> getJsonGif(@PathVariable String id) {
+    public ResponseEntity<String> getGifData(@PathVariable String id) {
         try {
             if (id.matches("[a-zA-Z]{3}")) {
-                return new ResponseEntity<>(service.getJsonGif(id), HttpStatus.OK);
+                return new ResponseEntity<>(service.getGifData(id), HttpStatus.OK);
             } else {
                 throw new InvalidKeyException("Bad request: key must be only 3 en letter");
             }

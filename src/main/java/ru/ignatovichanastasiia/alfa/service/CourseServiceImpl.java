@@ -37,12 +37,12 @@ public class CourseServiceImpl implements CourseService {
     
     
     @Override
-    public String getGifJS(String id)throws IllegalArgumentException{
+    public String getGifRef(String id)throws IllegalArgumentException{
         return getGif(id);
     }
 
     @Override
-    public String getJsonGif(String id) throws IllegalArgumentException{
+    public String getGifData(String id) throws IllegalArgumentException{
         Double courseToThisDay = getCourseToThisDay(id);
         Double courseToYesterday = getCourseToYesterday(id);
         Boolean vector = false;

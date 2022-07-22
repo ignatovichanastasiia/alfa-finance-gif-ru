@@ -10,8 +10,8 @@ public interface CourseService {
     
     String getGif(String id);
     
-    String getGifJS(String id); 
+    String getGifRef(String id); 
     
-    String getJsonGif(String id);
+    String getGifData(String id);
     
 }
