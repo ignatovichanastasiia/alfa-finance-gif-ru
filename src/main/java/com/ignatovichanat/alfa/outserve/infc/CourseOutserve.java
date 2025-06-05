@@ -1,9 +1,9 @@
 
-package ru.ignatovichanastasiia.alfa.outserve.infc;
+package com.ignatovichanat.alfa.outserve.infc;
 
 /**
  *
- * @author ignatovichanastasiia
+ * @author ignatovichanat
  */
 
 public interface CourseOutserve {

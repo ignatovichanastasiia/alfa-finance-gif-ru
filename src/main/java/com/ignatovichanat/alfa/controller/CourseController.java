@@ -1,6 +1,7 @@
-package ru.ignatovichanastasiia.alfa.controller;
+package com.ignatovichanat.alfa.controller;
 
 import java.net.URI;
+
 import java.security.InvalidKeyException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,11 +15,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.ignatovichanastasiia.alfa.service.infc.CourseService;
+import com.ignatovichanat.alfa.service.infc.CourseService;
 
 /**
  *
- * @author ignatovichanastasiia
+ * @author ignatovichanat
  */
 
 @RestController

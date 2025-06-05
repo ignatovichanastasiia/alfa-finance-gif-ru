@@ -1,6 +1,7 @@
-package ru.ignatovichanastasiia.alfa.controller;
+package com.ignatovichanat.alfa.controller;
 
 import org.apache.logging.log4j.LogManager;
+
 import org.apache.logging.log4j.Logger;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
@@ -10,7 +11,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import ru.ignatovichanastasiia.alfa.service.CourseServiceImpl;
+import com.ignatovichanat.alfa.service.CourseServiceImpl;
 
 /**
  *

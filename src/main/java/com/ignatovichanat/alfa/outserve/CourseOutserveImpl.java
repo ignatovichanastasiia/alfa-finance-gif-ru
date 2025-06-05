@@ -1,6 +1,7 @@
-package ru.ignatovichanastasiia.alfa.outserve;
+package com.ignatovichanat.alfa.outserve;
 
 import com.google.gson.Gson;
+
 import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,12 +12,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Repository;
-import ru.ignatovichanastasiia.alfa.feignutill.FeignCourseService;
-import ru.ignatovichanastasiia.alfa.outserve.infc.CourseOutserve;
+import com.ignatovichanat.alfa.feignutill.FeignCourseService;
+import com.ignatovichanat.alfa.outserve.infc.CourseOutserve;
 
 /**
  *
- * @author ignatovichanastasiia
+ * @author ignatovichanat
  */
 
 //examples

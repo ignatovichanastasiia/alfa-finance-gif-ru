@@ -1,10 +1,10 @@
 
-package ru.ignatovichanastasiia.alfa.service.infc;
+package com.ignatovichanat.alfa.service.infc;
 
 
 /**
  *
- * @author ignatovichanastasiia
+ * @author ignatovichanat
  */
 public interface CourseService {
     

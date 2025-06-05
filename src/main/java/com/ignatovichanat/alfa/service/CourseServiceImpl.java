@@ -1,15 +1,16 @@
-package ru.ignatovichanastasiia.alfa.service;
+package com.ignatovichanat.alfa.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import ru.ignatovichanastasiia.alfa.outserve.infc.CourseOutserve;
-import ru.ignatovichanastasiia.alfa.outserve.infc.GifOutserve;
-import ru.ignatovichanastasiia.alfa.service.infc.CourseService;
+import com.ignatovichanat.alfa.outserve.infc.CourseOutserve;
+import com.ignatovichanat.alfa.outserve.infc.GifOutserve;
+import com.ignatovichanat.alfa.service.infc.CourseService;
 
 /**
  *
- * @author ignatovichanastasiia
+ * @author ignatovichanat
  */
 
 //3 letter, status 400

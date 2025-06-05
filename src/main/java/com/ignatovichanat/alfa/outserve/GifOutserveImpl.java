@@ -1,6 +1,7 @@
-package ru.ignatovichanastasiia.alfa.outserve;
+package com.ignatovichanat.alfa.outserve;
 
 import java.util.regex.Matcher;
+
 import java.util.regex.Pattern;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,12 +10,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Repository;
-import ru.ignatovichanastasiia.alfa.outserve.infc.GifOutserve;
-import ru.ignatovichanastasiia.alfa.feignutill.FeignGifService;
+import com.ignatovichanat.alfa.outserve.infc.GifOutserve;
+import com.ignatovichanat.alfa.feignutill.FeignGifService;
 
 /**
  *
- * @author ignatovichanastasiia
+ * @author ignatovichanat
  */
 
 @Qualifier("GifOutserve")

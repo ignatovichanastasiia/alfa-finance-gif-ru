@@ -1,6 +1,7 @@
-package ru.ignatovichanastasiia.alfa.feignutill;
+package com.ignatovichanat.alfa.feignutill;
 
 import feign.Feign;
+
 import feign.Target;
 import feign.codec.Decoder;
 import feign.codec.Encoder;
@@ -10,7 +11,7 @@ import org.springframework.context.annotation.Import;
 
 /**
  *
- * @author ignatovichanastasiia
+ * @author ignatovichanat
  */
 
 @Import(FeignClientsConfiguration.class)
